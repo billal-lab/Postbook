@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+    <body>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+            <div class="px-5">
+                <a class="navbar-brand" href="{{path('app_index')}}">Postbook</a>
+            </div>
+            <div class="px-5" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{app.user.username}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('app_logout')}}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('app_login')}}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{path('app_register')}}">Register</a>
+                        </li>
+                    {% endif %}
+    
+                </ul>
+            </div>
+            </nav>
+        </div>
+        {% block body %}{% endblock %}
+    </body>
+</html>

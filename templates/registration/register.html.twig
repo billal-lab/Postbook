@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+<div class = "row mt-5">
+    {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate', 'class':'col-md-6 mx-auto'}}) }}
+        <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+        <div class="error">
+        {{ form_errors(registrationForm.email) }}
+        </div>
+        {{ form_label(registrationForm.email) }}
+        {{ form_widget(registrationForm.email,{'attr': {'class':'form-control'}}) }}
+
+        <div class="error">
+            {{ form_errors(registrationForm.username) }}
+        </div>
+        {{ form_label(registrationForm.username) }}
+        {{ form_widget(registrationForm.username,{'attr': {'class':'form-control'}}) }}
+
+        <div class="error">
+            {{ form_errors(registrationForm.password) }}
+        </div>
+        {{ form_label(registrationForm.password)}}
+        {{ form_widget(registrationForm.password,{'attr': {'class':'form-control'}})}}
+
+        <div class="error">
+            {{ form_errors(registrationForm.agreeTerms) }}
+        </div>
+        
+        {{ form_widget(registrationForm.agreeTerms, {'attr': {'class':'form-check-input mx-2'}}) }}
+        {{ form_label(registrationForm.agreeTerms) }}
+       
+        <button type="submit" class="btn btn-primary btn-block mt-2">Register</button>
+    {{ form_end(registrationForm) }}
+<div>
+{% endblock %}

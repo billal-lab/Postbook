@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello IndexController!{% endblock %}
+
+{% block body %}
+<div class = "pt-4">
+    <div class="container ">
+        <div class="row form-group">
+            <form action={{path('app_create')}} method="POST">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="2" name="content" id="comment"></textarea>
+                <input type="submit" class="btn btn-primary mt-2 btn-block">
+            </form>
+        </div>
+        <div class="row bg-light rounded mt-5">
+            <h1>Posts</h1>
+            <div>
+                {% for post in posts %}
+                    <div class="media border p-3">
+                    <div class="d-flex">
+                        <img src="https://www.w3schools.com/bootstrap/img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                        <div class="mx-5 mt-4">
+                            <h4>{{post.owner.username}} <small><i>Published at {{post.createdAt| date('Y-m-d H:i')}}</i></small></h4>
+                        </div>
+                    </div>
+                    <div class="media-body mt-2">
+                        <p>{{post.content}}</p>
+                    </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
