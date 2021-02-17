@@ -20,7 +20,7 @@
                     <div class="d-flex">
                         <img src="https://www.w3schools.com/bootstrap/img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
                         <div class="mx-5 mt-4">
-                            <h4>{{post.owner.username}} <small><i>Published at {{post.createdAt| date('Y-m-d H:i')}}</i></small></h4>
+                            <h4>{{post.owner.username}} <small><i>Published : {{post.createdAt|ago}}</i></small></h4>
                         </div>
                     </div>
                     <div class="media-body mt-2">
