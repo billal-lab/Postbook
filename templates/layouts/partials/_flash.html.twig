@@ -1,3 +1,4 @@
+<div class="text-center">
 {% for type, messages in app.flashes(['success', 'error', 'info']) %}
     {% for message in messages %}
         <div class="alert alert-{{ type }}" role="alert">
@@ -5,3 +6,4 @@
         </div>
     {% endfor %}
 {% endfor %}
+</div>

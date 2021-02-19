@@ -51,4 +51,30 @@ class IndexController extends AbstractController
         $this->addFlash("success","Congratulations !");
         return $this->redirectToRoute('app_index');
     }
+
+    /**
+     * @Route("/", name="app_edit", methods= {"PUT"})
+     */
+    public function edit(Request $request, EntityManagerInterface $em, ValidatorInterface $validator ): Response
+    {
+        dd("edit");
+        // $post = new Post;
+        // $post->setContent($request->request->get('content'));
+        // $post->setOwner($this->getUser());
+        // $errors = $validator->validate($post);
+        // if (count($errors) > 0) {
+        //     /*
+        //      * Uses a __toString method on the $errors variable which is a
+        //      * ConstraintViolationList object. This gives us a nice string
+        //      * for debugging.
+        //      */
+        //     $this->addFlash("error","Your post can not be empty.");
+        //     return $this->redirectToRoute('app_index');
+        // }
+
+        // $em->persist($post);
+        // $em->flush();
+        // $this->addFlash("success","Congratulations !");
+        // return $this->redirectToRoute('app_index');
+    }
 }
