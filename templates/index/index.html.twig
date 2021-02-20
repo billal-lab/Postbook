@@ -5,7 +5,7 @@
 {% block body %}
 
 <div id="test" class="container mt-5">
-
+    {{dump(app.user.roles)}}
     <div class = "row justify-content-end mr-1">
         <button {{app.user ? "" : "disabled"}} type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdropADD">
            + Add comment
@@ -25,13 +25,12 @@
                             <div class = "mb-3">
                                 <div class="d-flex justify justify-content-between">
                                     <div>
-                                        <h4>{{post.owner.username}} <small><i>have published : {{post.createdAt|ago}}</i></small></h4>
+                                        <h4>{{post.owner.username}} <small><i> have published : {{post.createdAt|ago}}</i></small></h4>
                                     </div>
                                     <div>
-                                        {% if app.user == post.owner %}
+                                        {% if app.user == post.owner or is_granted('ROLE_ADMIN')  %}
                                             <button {{app.user ? "" : "disabled"}} id="edit-button-{{post.id}}" class="btn btn-info" data-toggle="modal" data-target="#staticBackdropEDIT-{{post.id}}">Edit</button>
                                             {% include "layouts/partials/_modal.html.twig" with {'edit_add': 'staticBackdropEDIT','key': post.id, 'post': post} %}
-                                            
                                             <button {{app.user ? "" : "disabled"}} id="delete-button" onclick = "send({{post.id}})" class = "btn btn-danger">Delete</button>
                                             <form id="delete-form-{{post.id}}" action="{{path("app_delete", {id: post.id})}}" method="post" style="display: none;">
                                                 <input type="hidden" name="_method" value="DELETE">

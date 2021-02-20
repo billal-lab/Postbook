@@ -12,6 +12,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('user_index')}}">{{app.user.username}}</a>
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{path('index_admin')}}">List users</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('app_logout')}}">Logout</a>
                 </li>

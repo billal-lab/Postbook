@@ -8,8 +8,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class IndexController extends AbstractController
 {
@@ -20,7 +21,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @Route("/", name="app_index", methods={"GET"})
+     * @Route("/index", name="app_index", methods={"GET"})
      */
     public function index(): Response
     {
@@ -29,7 +30,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @Route("/", name="app_create", methods= {"POST"})
+     * @Route("/index/create", name="app_create", methods= {"POST"})
      */
     public function create(Request $request, EntityManagerInterface $em, ValidatorInterface $validator ): Response
     {
@@ -54,7 +55,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_edit", methods= {"PUT"})
+     * @Route("/index/edit/{id}", name="app_edit", methods= {"PUT"})
      */
     public function edit(Post $post,Request $request ,EntityManagerInterface $em ): Response
     {
@@ -81,7 +82,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_delete", methods= {"DELETE"})
+     * @Route("/index/edit/{id}", name="app_delete", methods= {"DELETE"})
      */
     public function delete(Post $post, EntityManagerInterface $em ): Response
     {

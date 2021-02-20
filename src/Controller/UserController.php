@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/profil", name="user_index", methods= "GET")
+     * @Route("/user", name="user_index", methods= "GET")
      */
     public function index(): Response
     {
@@ -26,7 +26,7 @@ class UserController extends AbstractController
 
 
      /**
-     * @Route("/profil", name="user_edit_id", methods={"POST", "PATCH"})
+     * @Route("/user/edit", name="user_edit_id", methods={"POST", "PATCH"})
      */
     public function edit(Request $request, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder,  EntityManagerInterface $em): Response
     {
