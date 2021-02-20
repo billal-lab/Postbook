@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id={{edit_add}} data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id={{key == "" ? edit_add : edit_add ~ "-" ~ key}} data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,10 +10,12 @@
             </div>
             <div class="modal-body">
                 <div class = "row justify-content-center">
-                    {% if edit_add == "staticBackdropEDIT" %}
-                        {% include "layouts/partials/_form_edit.html.twig" %}
-                    {% else %}
+                    {% if edit_add == "staticBackdropADD" %}
                         {% include "layouts/partials/_form_create.html.twig" %}
+                    {% else %}
+                        {% if post !=null and key!="" %}
+                             {% include "layouts/partials/_form_edit.html.twig" %}
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

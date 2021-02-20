@@ -1,4 +1,4 @@
-<form class="col-12" id="form_create" action={{path('app_create')}} method="POST">
+<form class="col-12" id="form_create" action={{path('app_create', {'id':'pos'})}} method="POST">
         <div calss="form-group">
             <label for="comment">Comment:</label>
             <textarea class="form-control" rows="3" name="content" id="comment"></textarea>

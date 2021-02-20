@@ -15,3 +15,17 @@ const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
+
+
+
+window.send = function send (id) {
+    if(confirm("Are you sur to deleting this post ?")){
+        document.getElementById(`delete-form-${id}`).submit();
+    }
+};
+
+window.edit = function edit (id) {
+    if(confirm("Are you sur to edit this post ?")){
+        document.getElementById(`edit-form-${id}`).submit();
+    }
+};

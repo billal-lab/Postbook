@@ -1,7 +1,8 @@
-<form class="col-12" id="edit_form" action={{path('app_create')}} method="POST">
+<form class="col-12" id="edit-form-{{post.id}}" action="{{path("app_edit", {id: post.id})}}" method="POST">
+    <input type="hidden" name="_method" value="PUT">
     <div calss="form-group">
         <label for="comment">Comment:</label>
-        <textarea class="form-control" rows="3" name="content" id="comment"></textarea>
+        <textarea class="form-control" rows="3" name="content" id="comment">{{post.content}}</textarea>
     </div>
-    <input type="submit" class="btn btn-primary mt-2 btn-block">
+    <input type="button" onclick="edit({{post.id}});" class="btn btn-primary mt-2 btn-block">
 </form>

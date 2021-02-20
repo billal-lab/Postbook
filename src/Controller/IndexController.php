@@ -23,7 +23,7 @@ class IndexController extends AbstractController
      */
     public function index(): Response
     {
-        $posts = $this->postRepo->findAll();
+        $posts = $this->postRepo-> findBy([],['createdAt'=>"DESC"]);
         return $this->render('index/index.html.twig', compact("posts"));
     }
 
@@ -53,11 +53,12 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @Route("/", name="app_edit", methods= {"PUT"})
+     * @Route("/{id}", name="app_edit", methods= {"PUT"})
      */
-    public function edit(Request $request, EntityManagerInterface $em, ValidatorInterface $validator ): Response
+    public function edit(Post $post,Request $request ,EntityManagerInterface $em ): Response
     {
-        dd("edit");
+        $post->setContent($request->request->get('content'));
+        $em->flush();
         // $post = new Post;
         // $post->setContent($request->request->get('content'));
         // $post->setOwner($this->getUser());
@@ -74,7 +75,18 @@ class IndexController extends AbstractController
 
         // $em->persist($post);
         // $em->flush();
-        // $this->addFlash("success","Congratulations !");
-        // return $this->redirectToRoute('app_index');
+        $this->addFlash("success","Le post a été bien modifié !");
+        return $this->redirectToRoute('app_index');
+    }
+
+    /**
+     * @Route("/{id}", name="app_delete", methods= {"DELETE"})
+     */
+    public function delete(Post $post, EntityManagerInterface $em ): Response
+    {
+        $em->remove($post);
+        $em->flush();
+        $this->addFlash("success","Le post a été bien suprimé");
+        return $this->redirectToRoute('app_index');
     }
 }
