@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class IndexController extends AbstractController
 {
     private $postRepo;
+    
     public function __construct(PostRepository $postRepo) {
         $this->postRepo = $postRepo;
     }

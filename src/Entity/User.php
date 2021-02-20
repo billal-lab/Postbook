@@ -37,13 +37,13 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="Please enter your password")
+     * @Assert\NotNull
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * (message="Please enter your username")
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Please enter your username")
      */
     private $username;
 

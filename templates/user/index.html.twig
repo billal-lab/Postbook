@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+
+    <div class = "row justify-content-center">
+        <div class= "col-5 bg-light rounded">
+            <form id="user-edit" action="{{path('user_edit_id')}}" method="POST">
+                <input type="hidden" name="_method" value="PATCH">
+                <div class="form-group">
+                    <label for="usr">Username:</label>
+                    <input type="text" class="form-control" name="username" value="{{app.user.username}}" id="usr">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Email:</label>
+                    <input type="email" class="form-control" name="email" value="{{app.user.email}}" id="usr">
+                </div>
+                <button id= "button-user-edit" type= "button" class="btn btn-info btn-block">Validate</button>
+            </form>
+        <div>
+    <div>
+</div>
+{% endblock %}

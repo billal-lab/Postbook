@@ -29,3 +29,9 @@ window.edit = function edit (id) {
         document.getElementById(`edit-form-${id}`).submit();
     }
 };
+
+document.getElementById("button-user-edit").onclick = function () {
+    if(confirm("Are you sur to edit your profil ?")){
+        document.getElementById("user-edit").submit();
+    }
+}

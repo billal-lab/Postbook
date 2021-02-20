@@ -1,5 +1,5 @@
 <div class="text-center">
-{% for type, messages in app.flashes(['success', 'error', 'info']) %}
+{% for type, messages in app.flashes(['success', 'danger', 'info']) %}
     {% for message in messages %}
         <div class="alert alert-{{ type }}" role="alert">
             {{ message }}

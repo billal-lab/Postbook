@@ -43,6 +43,7 @@ class Post
      */
     private $updatedAt;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +105,5 @@ class Post
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
     }
-
 
 }
