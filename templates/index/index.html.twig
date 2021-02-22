@@ -4,9 +4,9 @@
 
 {% block body %}
 
-<div id="test" class="container mt-5">
-    {{dump(app.user.roles)}}
-    <div class = "row justify-content-end mr-1">
+<div id="test" class="container mt-5 pt-5">
+
+    <div class = "row justify-content-end mt-3 mr-1">
         <button {{app.user ? "" : "disabled"}} type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdropADD">
            + Add comment
         </button>
@@ -39,8 +39,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class = "">
-                                <p>{{post.content}}</p>
+                            <div id="messageTopic" class = "messageTopic">
+                                <a id="messageLink" class="messageLink" href="">display message content</a>
+                                <p id="messageContent" class="messageContent hide">{{post.content}}</p>
                             </div>
                         </div>
                     </div>

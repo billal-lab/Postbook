@@ -26,7 +26,7 @@ class UserController extends AbstractController
 
 
      /**
-     * @Route("/user/edit", name="user_edit_id", methods={"POST", "PATCH"})
+     * @Route("/user", name="user_edit_id", methods={"PATCH"})
      */
     public function edit(Request $request, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder,  EntityManagerInterface $em): Response
     {

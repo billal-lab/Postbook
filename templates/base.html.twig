@@ -14,8 +14,12 @@
         {% endblock %}
     </head>
     <body>
+        <div class="fixed-top">
         {{ include('layouts/navbar.html.twig') }}
+        </div>
+        <div>
         {{ include('layouts/partials/_flash.html.twig') }}
+        </div>
         {% block body %}{% endblock %}
     </body>
         {# {{ include('layouts/footer.html.twig') }} #}
