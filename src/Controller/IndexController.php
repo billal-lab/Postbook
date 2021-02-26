@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Like;
 use App\Entity\Post;
+use App\Repository\LikeRepository;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,13 +13,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class IndexController extends AbstractController
 {
     private $postRepo;
+    private $likeRepo;
     
-    public function __construct(PostRepository $postRepo) {
+    public function __construct(PostRepository $postRepo, LikeRepository $likeRepo) {
         $this->postRepo = $postRepo;
+        $this->likeRepo = $likeRepo;
     }
 
     /**
@@ -90,5 +95,42 @@ class IndexController extends AbstractController
         $em->flush();
         $this->addFlash("success","Le post a été bien suprimé");
         return $this->redirectToRoute('app_index');
+    }
+
+    /**
+     * @Route("/index/like/{id}", name="app_like")
+     */
+    public function like(Post $post,  EntityManagerInterface $em){
+        
+        if(!$post->isLaked($this->getUser())){
+            $like = new Like;
+            $like->setUser($this->getUser());
+            $like->setPost($post);
+            $em->persist($like);
+            $em->flush();
+            $nb = $this->likeRepo->findBy(["post"=>$post]);
+            return new JsonResponse([
+                "code"=> 200,
+                "message" => "",
+                "action" => "dislike",
+                "nbLike" => count($nb)
+            ]);
+        }else{
+            $em->remove($this->likeRepo->findOneBy(["user"=>$this->getUser(),"post"=>$post]));
+            $em->flush();
+            $nb = $this->likeRepo->findBy(["post"=>$post]);
+            return new JsonResponse([
+                "code"=> 200,
+                "message" => "",
+                "action" => "like",
+                "nbLike" => count($nb)
+            ]);
+        }
+        $nb = $this->likeRepo->findBy(["post"=>$post]);
+        return new JsonResponse([
+            "code"=> 200,
+            "message" => "",
+            "nbLike" => count($nb)
+        ]);
     }
 }

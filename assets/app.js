@@ -9,8 +9,8 @@
 import './styles/app.css';
 import './styles/app.scss';
 // start the Stimulus application
+import './like';
 import './bootstrap';
-
 
 const $ = require('jquery');
 // this "modifies" the jquery module: adding behavior to it
@@ -41,21 +41,29 @@ try {
     
 }
 
-var  messageTopics = document.querySelectorAll('#messageTopic');
-var  messageLinks = document.querySelectorAll('#messageLink');
+try {
+    var  messageTopics = document.querySelectorAll('#messageTopic');
+    var  messageLinks = document.querySelectorAll('#messageLink');
 
-var i=0;
-for(i=0;i<messageLinks.length;i++){
-    (function work(j) {
-        messageLinks[j].addEventListener("click",(event)=>{
-            event.preventDefault();
-            var sib = messageLinks[j].nextElementSibling
-            if(sib.classList.toggle("hide")===false){
-                messageLinks[j].childNodes[0].textContent = "Hide content"
-            }else{
-                messageLinks[j].childNodes[0].textContent = "dispaly message content"
-            }
-        })
-    })(i)
+    var i=0;
+    for(i=0;i<messageLinks.length;i++){
+        (function work(j) {
+            messageLinks[j].addEventListener("click",(event)=>{
+                event.preventDefault();
+                var sib = messageLinks[j].nextElementSibling
+                if(sib.classList.toggle("hide")===false){
+                    messageLinks[j].childNodes[0].textContent = "Hid content"
+                }else{
+                    messageLinks[j].childNodes[0].textContent = "display message content"
+                }
+            })
+        })(i)
+    }
+} catch (error) {
+    
 }
+
+// var search = document.querySelector("#myInput");
+// search.addEventListener("on")
+
 

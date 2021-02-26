@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PostRepository;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -42,6 +44,16 @@ class Post
      * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Like::class, mappedBy="post")
+     */
+    private $likes;
+
+    public function __construct()
+    {
+        $this->likes = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -104,6 +116,47 @@ class Post
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return Collection|Like[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+            $like->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getPost() === $this) {
+                $like->setPost(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isLaked(User $user)
+    {
+        $likes = $this->getLikes();
+        foreach ($likes as $like) {
+            if($like->getUser()== $user){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

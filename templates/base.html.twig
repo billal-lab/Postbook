@@ -13,14 +13,18 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        <div class="fixed-top">
-        {{ include('layouts/navbar.html.twig') }}
-        </div>
+    <body class="d-flex flex-column justify-content-between">
         <div>
-        {{ include('layouts/partials/_flash.html.twig') }}
+            <div class="fixed-top">
+            {{ include('layouts/navbar.html.twig') }}
+            </div>
+            <div class="mt-5 mb-5">
+            {{ include('layouts/partials/_flash.html.twig') }}
+            </div>
+            {% block body %}{% endblock %}
         </div>
-        {% block body %}{% endblock %}
+        <div class="mt-5">
+            {# {{ include('layouts/footer.html.twig') }} #}
+        </div>
     </body>
-        {# {{ include('layouts/footer.html.twig') }} #}
 </html>
